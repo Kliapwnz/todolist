@@ -16,8 +16,8 @@ function App() {
     let todolistID2 = v1()
 
     let [todolists, setTodolists] = useState<Array<TodolistsType>>([
-        {id: todolistID1, title: 'What to learn', filter: 'all'},
-        {id: todolistID2, title: 'What to buy', filter: 'all'},
+        {id: todolistID1, title: 'Hello', filter: 'all'},
+        {id: todolistID2, title: 'Bye', filter: 'all'},
     ])
 
     let [tasks, setTasks] = useState({
@@ -34,10 +34,10 @@ function App() {
     })
 
 
-    const changeTaskStatus = (id: string, isDone: boolean, todolistID:string) => {
-       let todolistTasks = tasks[todolistID]
-        let task = todolistTasks.find(el=> el.id === id)
-        if(task){
+    const changeTaskStatus = (id: string, isDone: boolean, todolistID: string) => {
+        let todolistTasks = tasks[todolistID]
+        let task = todolistTasks.find(el => el.id === id)
+        if (task) {
             task.isDone = isDone
             setTasks({...tasks})
         }
@@ -64,7 +64,11 @@ function App() {
             setTodolists([...todolists])
         }
     }
-
+    const removeTodolist = (id: string) => {
+        setTodolists(todolists.filter(el => el.id !== id))
+        delete tasks[id]
+        setTasks({...tasks})
+    }
 
     return (
         <div className="App">
@@ -77,7 +81,7 @@ function App() {
                 if (el.filter === "completed") {
                     tasksForTodolist = allTodolistsTasks.filter(el => !el.isDone)
                 }
-                return <Todolist title="My First Todo"
+                return <Todolist title={el.title}
                                  task={tasksForTodolist}
                                  removeTask={removeTask}
                                  changeFilter={changeFilter}
@@ -85,6 +89,7 @@ function App() {
                                  changeTaskStatus={changeTaskStatus}
                                  id={el.id}
                                  filter={el.filter}
+                                 removeTodolist={removeTodolist}
                 />
             })}
 

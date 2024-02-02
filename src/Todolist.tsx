@@ -10,6 +10,7 @@ type TodolistType = {
     changeTaskStatus: (id: string, isDone: boolean,todolistID:string) => void
     id:string
     filter:string
+    removeTodolist:(id:string)=>void
 
 }
 type TaskType = {
@@ -53,7 +54,7 @@ export const Todolist = (props: TodolistType) => {
 
     return (
         <div>
-            <h3>{props.title}</h3>
+            <h3>{props.title}</h3><button onClick={()=>{props.removeTodolist(props.id)}}>X</button>
             <div>
                 <input value={title}
                        onChange={onChangeHandler}
