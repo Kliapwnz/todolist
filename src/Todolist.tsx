@@ -6,6 +6,7 @@ type TodolistType = {
     task: TaskType[]
     removeTask: (taskId: string) => void
     changeFilter: (value: FilterValuesType) => void
+    addTask: (title:string) => void
 }
 type TaskType = {
     id: string,
@@ -15,13 +16,20 @@ type TaskType = {
 
 
 export const Todolist = (props: TodolistType) => {
+    let [title, setTitle] = useState("")
+
+    let addTaskHandler = () => {
+        props.addTask(title)
+        setTitle("")
+    }
 
     return (
         <div>
             <h3>{props.title}</h3>
             <div>
-                <input/>
-                <button>+</button>
+                <input value={title} onChange={(e)=>{setTitle(e.currentTarget.value)}}/>
+                <button onClick={addTaskHandler}>+
+                </button>
             </div>
             <ul>
                 {props.task.map(el => {

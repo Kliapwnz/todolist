@@ -13,6 +13,12 @@ function App() {
         {id: v1(), title: "ReactJS", isDone: false}
     ])
 
+    const addTask = (title:string) => {
+        let task = {id:v1(),title:title, isDone:false}
+        let newTasks=[task , ...tasks]
+        setTasks(newTasks)
+    }
+
     const removeTask = (taskId: string) => {
         tasks = tasks.filter(el => el.id !== taskId)
         setTasks(tasks)
@@ -35,6 +41,7 @@ function App() {
                       task={tasksForTodolist}
                       removeTask={removeTask}
                       changeFilter={changeFilter}
+                      addTask={addTask}
             />
         </div>
     );
