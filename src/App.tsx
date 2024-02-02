@@ -12,7 +12,6 @@ export type TodolistsType = {
 
 
 function App() {
-    let [filter, setFilter] = useState<FilterValuesType>("all")
 
     let [todolists, setTodolists] = useState<Array<TodolistsType>>(
         [
@@ -46,27 +45,33 @@ function App() {
         setTasks(tasks)
     }
 
-    const changeFilter = (value: FilterValuesType) => {
-        setFilter(value)
+    const changeFilter = (value: FilterValuesType, todolistId:string) => {
+      let todolist = todolists.find(el=> el.id === todolistId)
+        if(todolist){
+            todolist.filter = value
+            setTodolists([...todolists])
+        }
     }
-    let tasksForTodolist = tasks
-    if (filter === "active") {
-        tasksForTodolist = tasks.filter(el => el.isDone)
-    }
-    if (filter === "completed") {
-        tasksForTodolist = tasks.filter(el => !el.isDone)
-    }
+
 
     return (
         <div className="App">
             {todolists.map(el => {
+                let tasksForTodolist = tasks
+                if (el.filter === "active") {
+                    tasksForTodolist = tasks.filter(el => el.isDone)
+                }
+                if (el.filter === "completed") {
+                    tasksForTodolist = tasks.filter(el => !el.isDone)
+                }
                 return <Todolist title="My First Todo"
                                  task={tasksForTodolist}
                                  removeTask={removeTask}
                                  changeFilter={changeFilter}
                                  addTask={addTask}
                                  changeTaskStatus={changeTaskStatus}
-                                 filter={filter}
+                                 id={el.id}
+                                 filter={el.filter}
                 />
             })}
 
