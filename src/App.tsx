@@ -13,6 +13,14 @@ function App() {
         {id: v1(), title: "ReactJS", isDone: false}
     ])
 
+    const changeTaskStatus = (id:string, isDone:boolean) => {
+        let task = tasks.find(el=>el.id === id)
+        if (task){
+            task.isDone = isDone;
+            setTasks([...tasks])
+        }
+    }
+
     const addTask = (title: string) => {
         let task = {id: v1(), title: title, isDone: false}
         let newTasks = [task, ...tasks]
@@ -42,6 +50,7 @@ function App() {
                       removeTask={removeTask}
                       changeFilter={changeFilter}
                       addTask={addTask}
+                      changeTaskStatus={changeTaskStatus}
             />
         </div>
     );
