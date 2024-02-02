@@ -4,10 +4,10 @@ import {FilterValuesType} from "./App";
 type TodolistType = {
     title: string
     task: TaskType[]
-    removeTask: (taskId: string) => void
+    removeTask: (taskId: string,todolistID:string) => void
     changeFilter: (value: FilterValuesType, todolistId:string) => void
-    addTask: (title: string) => void
-    changeTaskStatus: (id: string, isDone: boolean) => void
+    addTask: (title: string, todolistID: string) => void
+    changeTaskStatus: (id: string, isDone: boolean,todolistID:string) => void
     id:string
     filter:string
 
@@ -25,7 +25,7 @@ export const Todolist = (props: TodolistType) => {
 
     let addTaskHandler = () => {
         if (title.trim() !== "") {
-            props.addTask(title)
+            props.addTask(title, props.id)
             setTitle("")
         } else {
             setError("Title is required")
@@ -66,10 +66,10 @@ export const Todolist = (props: TodolistType) => {
                 {props.task.map(el => {
                         let onChangeBoxHandler = (e: ChangeEvent<HTMLInputElement>) => {
                             let newIsDoneValue = e.currentTarget.checked
-                            props.changeTaskStatus(el.id, newIsDoneValue)
+                            props.changeTaskStatus(el.id, newIsDoneValue, props.id)
                         }
                         let removeTaskHandler = () => {
-                            props.removeTask(el.id)
+                            props.removeTask(el.id, props.id)
                         }
                         return (
                             <li key={el.id} className={el.isDone ? "is-done" : ""}>
