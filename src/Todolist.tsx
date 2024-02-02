@@ -18,17 +18,21 @@ type TaskType = {
 
 export const Todolist = (props: TodolistType) => {
     let [title, setTitle] = useState("")
+    let [error, setError] = useState<string | null>(null)
 
     let addTaskHandler = () => {
         if (title.trim() !== "") {
             props.addTask(title)
             setTitle("")
+        } else {
+            setError("Title is required")
         }
     }
     let onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
     let onEnterHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        setError(null)
         if (e.key === "Enter") {
             addTaskHandler()
         }
@@ -52,8 +56,8 @@ export const Todolist = (props: TodolistType) => {
                        onChange={onChangeHandler}
                        onKeyPress={onEnterHandler}
                 />
-                <button onClick={addTaskHandler}>+
-                </button>
+                <button onClick={addTaskHandler}>+</button>
+                {error && <div className="error-message">{error}</div>}
             </div>
             <ul>
                 {props.task.map(el => {
