@@ -70,7 +70,7 @@ export const Todolist = (props: TodolistType) => {
                             props.removeTask(el.id)
                         }
                         return (
-                            <li key={el.id}>
+                            <li key={el.id} className={el.isDone ? "is-done" : ""}>
                                 <input type="checkbox" checked={el.isDone} onChange={onChangeBoxHandler}/>
                                 <span>{el.title}</span>
                                 <button onClick={removeTaskHandler}>X
