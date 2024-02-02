@@ -27,7 +27,14 @@ export const Todolist = (props: TodolistType) => {
         <div>
             <h3>{props.title}</h3>
             <div>
-                <input value={title} onChange={(e)=>{setTitle(e.currentTarget.value)}}/>
+                <input value={title}
+                       onChange={(e)=>{setTitle(e.currentTarget.value)}}
+                       onKeyPress={(e)=>{
+                           if(e.key === "Enter"){
+                               addTaskHandler()
+                           }
+                       }}
+                />
                 <button onClick={addTaskHandler}>+
                 </button>
             </div>
