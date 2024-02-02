@@ -4,18 +4,32 @@ import {Todolist} from "./Todolist";
 import {v1} from "uuid";
 
 export type FilterValuesType = "all" | "active" | "completed"
+export type TodolistsType = {
+    id: string,
+    title: string,
+    filter: FilterValuesType
+}
+
 
 function App() {
     let [filter, setFilter] = useState<FilterValuesType>("all")
+
+    let [todolists, setTodolists] = useState<Array<TodolistsType>>(
+        [
+            {id: v1(), title: 'What to learn', filter: 'all'},
+            {id: v1(), title: 'What to buy', filter: 'all'},
+        ]
+    )
+
     let [tasks, setTasks] = useState([
         {id: v1(), title: "HTML&CSS", isDone: true},
         {id: v1(), title: "JS", isDone: true},
         {id: v1(), title: "ReactJS", isDone: false}
     ])
 
-    const changeTaskStatus = (id:string, isDone:boolean) => {
-        let task = tasks.find(el=>el.id === id)
-        if (task){
+    const changeTaskStatus = (id: string, isDone: boolean) => {
+        let task = tasks.find(el => el.id === id)
+        if (task) {
             task.isDone = isDone;
             setTasks([...tasks])
         }
@@ -45,14 +59,17 @@ function App() {
 
     return (
         <div className="App">
-            <Todolist title="My First Todo"
-                      task={tasksForTodolist}
-                      removeTask={removeTask}
-                      changeFilter={changeFilter}
-                      addTask={addTask}
-                      changeTaskStatus={changeTaskStatus}
-                      filter={filter}
-            />
+            {todolists.map(el => {
+                return <Todolist title="My First Todo"
+                                 task={tasksForTodolist}
+                                 removeTask={removeTask}
+                                 changeFilter={changeFilter}
+                                 addTask={addTask}
+                                 changeTaskStatus={changeTaskStatus}
+                                 filter={filter}
+                />
+            })}
+
         </div>
     );
 }
