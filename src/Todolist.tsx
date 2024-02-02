@@ -8,6 +8,7 @@ type TodolistType = {
     changeFilter: (value: FilterValuesType) => void
     addTask: (title: string) => void
     changeTaskStatus: (id: string, isDone: boolean) => void
+    filter: FilterValuesType
 }
 type TaskType = {
     id: string,
@@ -80,11 +81,14 @@ export const Todolist = (props: TodolistType) => {
                 )}
             </ul>
             <div>
-                <button onClick={allButtonHandler}>All
+                <button className={props.filter === "all" ? "active-filter" : ""}
+                        onClick={allButtonHandler}>All
                 </button>
-                <button onClick={activeButtonHandler}>Active
+                <button className={props.filter === "active" ? "active-filter" : ""}
+                        onClick={activeButtonHandler}>Active
                 </button>
-                <button onClick={completedButtonHandler}>Completed
+                <button className={props.filter === "completed" ? "active-filter" : ""}
+                        onClick={completedButtonHandler}>Completed
                 </button>
             </div>
         </div>
