@@ -17,7 +17,7 @@ function App() {
         setTasks(tasks)
     }
 
-    const changeFilter = (value:FilterValuesType) => {
+    const changeFilter = (value: FilterValuesType) => {
         setFilter(value)
     }
     let tasksForTodolist = tasks
