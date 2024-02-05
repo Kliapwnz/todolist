@@ -9,11 +9,11 @@ type TodolistType = {
     addTask: (title: string, todolistID: string) => void
     changeTaskStatus: (id: string, isDone: boolean,todolistID:string) => void
     id:string
-    filter:string
+    filter:FilterValuesType
     removeTodolist:(id:string)=>void
 
 }
-type TaskType = {
+export type TaskType = {
     id: string,
     title: string,
     isDone: boolean
