@@ -1,10 +1,10 @@
 import React, {ChangeEvent, useState} from 'react';
 
 type AddItemFormPropsType = {
-    addItem:(title:string)=>void
+    addItem: (title: string) => void
 }
 
-export const AddItemForm = (props:AddItemFormPropsType) => {
+export const AddItemForm = (props: AddItemFormPropsType) => {
     let [title, setTitle] = useState("")
     let [error, setError] = useState<string | null>(null)
     let addTaskHandler = () => {

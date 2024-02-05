@@ -5,13 +5,13 @@ import {AddItemForm} from "./AddItemForm";
 type TodolistType = {
     title: string
     task: TaskType[]
-    removeTask: (taskId: string,todolistID:string) => void
-    changeFilter: (value: FilterValuesType, todolistId:string) => void
+    removeTask: (taskId: string, todolistID: string) => void
+    changeFilter: (value: FilterValuesType, todolistId: string) => void
     addTask: (title: string, todolistID: string) => void
-    changeTaskStatus: (id: string, isDone: boolean,todolistID:string) => void
-    id:string
-    filter:FilterValuesType
-    removeTodolist:(id:string)=>void
+    changeTaskStatus: (id: string, isDone: boolean, todolistID: string) => void
+    id: string
+    filter: FilterValuesType
+    removeTodolist: (id: string) => void
 
 }
 export type TaskType = {
@@ -23,7 +23,7 @@ export type TaskType = {
 
 export const Todolist = (props: TodolistType) => {
 
-    const addTask = (title:string)=>{
+    const addTask = (title: string) => {
         props.addTask(title, props.id)
     }
 
@@ -40,9 +40,13 @@ export const Todolist = (props: TodolistType) => {
 
     return (
         <div>
-            <h3>{props.title}</h3><button onClick={()=>{props.removeTodolist(props.id)}}>X</button>
+            <h3>{props.title}</h3>
+            <button onClick={() => {
+                props.removeTodolist(props.id)
+            }}>X
+            </button>
             <div>
-               <AddItemForm addItem={addTask}/>
+                <AddItemForm addItem={addTask}/>
             </div>
             <ul>
                 {props.task.map(el => {
