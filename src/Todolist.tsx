@@ -2,7 +2,7 @@ import React, {ChangeEvent, KeyboardEventHandler, useState} from "react";
 import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
-import {IconButton} from "@mui/material";
+import {Button, IconButton} from "@mui/material";
 import {Delete} from "@mui/icons-material";
 
 type TodolistType = {
@@ -81,15 +81,15 @@ export const Todolist = (props: TodolistType) => {
                 )}
             </ul>
             <div>
-                <button className={props.filter === "all" ? "active-filter" : ""}
+                <Button variant={props.filter === 'all' ? 'outlined' : 'text'}
                         onClick={allButtonHandler}>All
-                </button>
-                <button className={props.filter === "active" ? "active-filter" : ""}
+                </Button>
+                <Button variant={props.filter === 'active' ? 'outlined' : 'text'}
                         onClick={activeButtonHandler}>Active
-                </button>
-                <button className={props.filter === "completed" ? "active-filter" : ""}
+                </Button>
+                <Button variant={props.filter === 'completed' ? 'outlined' : 'text'}
                         onClick={completedButtonHandler}>Completed
-                </button>
+                </Button>
             </div>
         </div>
     )
