@@ -2,7 +2,7 @@ import React, {ChangeEvent, KeyboardEventHandler, useState} from "react";
 import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
-import {Button, IconButton} from "@mui/material";
+import {Button, Checkbox, IconButton} from "@mui/material";
 import {Delete} from "@mui/icons-material";
 
 type TodolistType = {
@@ -70,7 +70,11 @@ export const Todolist = (props: TodolistType) => {
                         }
                         return (
                             <li key={el.id} className={el.isDone ? "is-done" : ""}>
-                                <input type="checkbox" checked={el.isDone} onChange={onChangeBoxHandler}/>
+                                <Checkbox
+                                    color='primary'
+                                    checked={el.isDone}
+                                    onChange={onChangeBoxHandler}
+                                />
                                 <EditableSpan title={el.title} onClick={(title) => updateTaskHandler(el.id, title)}/>
                                 <IconButton onClick={removeTaskHandler}>
                                     <Delete/>
