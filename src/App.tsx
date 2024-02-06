@@ -3,6 +3,7 @@ import './App.css';
 import {TaskType, Todolist} from "./Todolist";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
+import {AppBarHelper} from "./AppBar";
 
 export type FilterValuesType = "all" | "active" | "completed"
 export type TodolistsType = {
@@ -87,6 +88,8 @@ function App() {
 
     return (
         <div className="App">
+            <AppBarHelper/>
+
             <AddItemForm addItem={addTodolist}/>
             {todolists.map(el => {
                 let allTodolistsTasks = tasks[el.id]
@@ -110,7 +113,6 @@ function App() {
                                  updateTodolist={updateTodolist}
                 />
             })}
-
         </div>
     );
 }
