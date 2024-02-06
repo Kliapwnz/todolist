@@ -31,7 +31,8 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
                    onChange={onChangeHandler}
                    onKeyPress={onEnterHandler}
             />
-            <Button variant = 'contained' color='primary' onClick={addTaskHandler}>+</Button>
+            <Button style={{maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px'}}
+                    variant='contained' color='primary' onClick={addTaskHandler}>+</Button>
             {error && <div className="error-message">{error}</div>}
         </div>
     );
