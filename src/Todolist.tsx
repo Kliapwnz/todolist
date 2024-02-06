@@ -2,6 +2,8 @@ import React, {ChangeEvent, KeyboardEventHandler, useState} from "react";
 import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
+import {IconButton} from "@mui/material";
+import {Delete} from "@mui/icons-material";
 
 type TodolistType = {
     title: string
@@ -44,14 +46,15 @@ export const Todolist = (props: TodolistType) => {
     const updateTaskHandler = (tId: string, title: string) => {
         props.updateTask(props.id, tId, title)
     }
+    const removeTodolist = () => {
+        props.removeTodolist(props.id)
+    }
     return (
         <div>
             <EditableSpan title={props.title} onClick={updateTodolistHandler}/>
-
-            <button onClick={() => {
-                props.removeTodolist(props.id)
-            }}>X
-            </button>
+            <IconButton onClick={removeTodolist}>
+                <Delete/>
+            </IconButton>
             <div>
                 <AddItemForm addItem={addTask}/>
             </div>
@@ -69,8 +72,9 @@ export const Todolist = (props: TodolistType) => {
                             <li key={el.id} className={el.isDone ? "is-done" : ""}>
                                 <input type="checkbox" checked={el.isDone} onChange={onChangeBoxHandler}/>
                                 <EditableSpan title={el.title} onClick={(title) => updateTaskHandler(el.id, title)}/>
-                                <button onClick={removeTaskHandler}>X
-                                </button>
+                                <IconButton onClick={removeTaskHandler}>
+                                    <Delete/>
+                                </IconButton>
                             </li>
                         )
                     }
