@@ -38,8 +38,11 @@ export const Todolist = (props: TodolistType) => {
     let completedButtonHandler = () => {
         props.changeFilter("completed", props.id)
     }
-    let updateTodolistHandler = (title:string) => {
+    let updateTodolistHandler = (title: string) => {
         props.updateTodolist(props.id, title)
+    }
+    const updateTaskHandler = (tId:string, title: string) => {
+        props.updateTask(props.id,tId , title)
     }
     return (
         <div>
@@ -54,9 +57,7 @@ export const Todolist = (props: TodolistType) => {
             </div>
             <ul>
                 {props.task.map(el => {
-                        const updateTaskHandler = (title: string) => {
-                            props.updateTask(props.id, el.id, title)
-                        }
+
                         let onChangeBoxHandler = (e: ChangeEvent<HTMLInputElement>) => {
                             let newIsDoneValue = e.currentTarget.checked
                             props.changeTaskStatus(el.id, newIsDoneValue, props.id)
@@ -67,7 +68,7 @@ export const Todolist = (props: TodolistType) => {
                         return (
                             <li key={el.id} className={el.isDone ? "is-done" : ""}>
                                 <input type="checkbox" checked={el.isDone} onChange={onChangeBoxHandler}/>
-                                <EditableSpan title={el.title} onClick={updateTaskHandler}/>
+                                <EditableSpan title={el.title} onClick={(title)=>updateTaskHandler(el.id, title)}/>
                                 <button onClick={removeTaskHandler}>X
                                 </button>
                             </li>
