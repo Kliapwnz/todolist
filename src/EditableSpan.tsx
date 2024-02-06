@@ -2,21 +2,21 @@ import React, {ChangeEvent, useState} from 'react';
 
 type EditableSpanPropsType = {
     title: string
-    onClick:(title:string)=>void
+    onClick: (title: string) => void
 }
 
 export const EditableSpan = (props: EditableSpanPropsType) => {
     let [title, setTitle] = useState(props.title)
     const [edit, setEdit] = useState(false)
-    const editHandler = () =>{
+    const editHandler = () => {
         setEdit(!edit)
-      if(edit){
-          addTask()
-      }
+        if (edit) {
+            addTask()
+        }
 
 
     }
-    const onChangeHandler = (e:ChangeEvent<HTMLInputElement>) =>{
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
     const addTask = () => {
@@ -26,7 +26,7 @@ export const EditableSpan = (props: EditableSpanPropsType) => {
     return (
         edit
             ? <input value={title} onChange={onChangeHandler} onBlur={editHandler} autoFocus/>
-            : <span onDoubleClick={editHandler} >{props.title}</span>
+            : <span onDoubleClick={editHandler}>{props.title}</span>
     );
 };
 
