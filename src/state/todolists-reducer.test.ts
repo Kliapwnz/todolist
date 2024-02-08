@@ -50,9 +50,9 @@ test('correct todolist should change its name', () => {
         {id: todolistId2, title: 'What to buy', filter: 'all'}
     ]
 
-    const action = ChangeTodolistTitleAC(todolistId2 , newTodolistTitle)
+    const action = ChangeTodolistTitleAC(todolistId2, newTodolistTitle)
 
-    const endState = todolistsReducer(startState,action )
+    const endState = todolistsReducer(startState, action)
 
     expect(endState[0].title).toBe('What to learn')
     expect(endState[1].title).toBe(newTodolistTitle)
