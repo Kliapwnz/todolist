@@ -19,6 +19,9 @@ export const todolistsReducer = (state: Array<TodolistsType>, action: ActionType
             let newTodolist: TodolistsType = {id: newTodolistId, title: action.title, filter: "all"}
             return [...state, newTodolist]
         }
+        case 'CHANGE-TODOLIST-TITLE' : {
+            return state.map(el => el.id === action.id ? {...el, title: action.title} : el)
+        }
         default:
             throw new Error('I don\'t understand this type')
     }
