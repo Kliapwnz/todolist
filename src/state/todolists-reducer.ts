@@ -1,7 +1,11 @@
 import {FilterValuesType, TodolistsType} from "../App";
 import {v1} from "uuid";
 
-type ActionsType = RemoveTodolistActionType | AddTodolistActionType | ChangeTodolistTitleActionType | ChangeTodolistFilterActionType
+type ActionsType =
+    RemoveTodolistActionType
+    | AddTodolistActionType
+    | ChangeTodolistTitleActionType
+    | ChangeTodolistFilterActionType
 export type RemoveTodolistActionType = {
     type: 'REMOVE-TODOLIST',
     id: string
@@ -12,12 +16,12 @@ export type AddTodolistActionType = {
 }
 export type ChangeTodolistTitleActionType = {
     type: 'CHANGE-TODOLIST-TITLE',
-    id:string,
-    title:string
+    id: string,
+    title: string
 }
 export type ChangeTodolistFilterActionType = {
     type: 'CHANGE-TODOLIST-FILTER',
-    id:string,
+    id: string,
     filter: FilterValuesType
 }
 // меня вызовут и дадут мне стейт (почти всегда объект)
@@ -47,4 +51,19 @@ export const todolistsReducer = (state: Array<TodolistsType>, action: ActionsTyp
         default:
             throw new Error('I don\'t understand this type')
     }
+}
+
+export const RemoveTodolistAc = (todolistId: string): RemoveTodolistActionType => {
+    return {type: 'REMOVE-TODOLIST', id: todolistId}
+}
+
+export const AddTodolistAC = (title:string): AddTodolistActionType => {
+    return {type: "ADD-TODOLIST", title}
+}
+
+export const ChangeTodolistTitleAC = (id:string, title:string): ChangeTodolistTitleActionType => {
+    return {type: 'CHANGE-TODOLIST-TITLE', id, title}
+}
+export const ChangeTodolistFilterAC = (id:string, filter:FilterValuesType):ChangeTodolistFilterActionType => {
+    return {type:'CHANGE-TODOLIST-FILTER', id, filter}
 }
