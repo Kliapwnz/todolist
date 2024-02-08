@@ -17,12 +17,15 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType) => {
             let task = {id: v1(), title: action.taskName, isDone: false}
             return {
                 ...state,
-                [action.todolistId]: [task,...state[action.todolistId]]
+                [action.todolistId]: [task, ...state[action.todolistId]]
             }
         case "CHANGE-TASK-STATUS":
             return {
                 ...state,
-                [action.todolistId]:state[action.todolistId].map(el=> el.id === action.taskId ? {...el, isDone:action.isDone} :el)
+                [action.todolistId]: state[action.todolistId].map(el => el.id === action.taskId ? {
+                    ...el,
+                    isDone: action.isDone
+                } : el)
             }
         default:
             throw new Error('I don\'t understand this type')
@@ -33,9 +36,9 @@ export const removeTaskAC = (taskId: string, todolistId: string) => {
     return {type: 'REMOVE-TASK', taskId, todolistId} as const
 }
 
-export const addTaskAC = (taskName:string, todolistId:string) => {
+export const addTaskAC = (taskName: string, todolistId: string) => {
     return {type: 'ADD-TASK', taskName, todolistId} as const
 }
-export const changeTaskStatusAC = (taskId:string, isDone:boolean,todolistId:string) =>{
+export const changeTaskStatusAC = (taskId: string, isDone: boolean, todolistId: string) => {
     return {type: 'CHANGE-TASK-STATUS', taskId, isDone, todolistId} as const
 }
