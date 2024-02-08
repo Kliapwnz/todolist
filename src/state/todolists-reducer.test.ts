@@ -1,6 +1,6 @@
-import { todolistsReducer } from './todolists-reducer'
-import { v1 } from 'uuid'
-import { TodolistsType } from '../App'
+import {todolistsReducer} from './todolists-reducer'
+import {v1} from 'uuid'
+import {TodolistsType} from '../App'
 
 test('correct todolist should be removed', () => {
     let todolistId1 = v1()
@@ -32,4 +32,5 @@ test('correct todolist should be added', () => {
 
     expect(endState.length).toBe(3)
     expect(endState[2].title).toBe(newTodolistTitle)
+    expect(endState[2].filter).toBe("all")
 })
