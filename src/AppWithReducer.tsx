@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import './App.css';
 import {TaskType, Todolist} from "./Todolist";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
 import {AppBarHelper} from "./AppBar";
 import {Container, Grid, Paper} from "@mui/material";
+import {todolistsReducer} from "./state/todolists-reducer";
+import {tasksReducer} from "./state/tasks-reducer";
 
 export type FilterValuesType = "all" | "active" | "completed"
 export type TodolistsType = {
@@ -20,12 +22,12 @@ export function AppWithReducer() {
     let todolistID1 = v1()
     let todolistID2 = v1()
 
-    let [todolists, setTodolists] = useState<Array<TodolistsType>>([
+    let [todolists, dispatchToTodolists] = useReducer(todolistsReducer,[
         {id: todolistID1, title: 'KLIApwnz', filter: 'all'},
         {id: todolistID2, title: 'I try to learn JS', filter: 'all'},
     ])
 
-    let [tasks, setTasks] = useState<TasksStateType>({
+    let [tasks, dispatchToTasks] = useReducer(tasksReducer,{
         [todolistID1]: [
             {id: v1(), title: 'HTML&CSS', isDone: true},
             {id: v1(), title: 'JS', isDone: true},
@@ -40,12 +42,7 @@ export function AppWithReducer() {
 
 
     const changeTaskStatus = (id: string, isDone: boolean, todolistID: string) => {
-        let todolistTasks = tasks[todolistID]
-        let task = todolistTasks.find(el => el.id === id)
-        if (task) {
-            task.isDone = isDone
-            setTasks({...tasks})
-        }
+   // dispatchToTasks()
     }
 
     const addTask = (title: string, todolistID: string) => {
