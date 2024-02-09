@@ -4,7 +4,7 @@ import {AddTodolistAC, RemoveTodolistAC} from "./todolists-reducer";
 
 let startState: TasksStateType
 
-beforeEach(()=>{
+beforeEach(() => {
     startState = {
         'todolistId1': [
             {id: '1', title: 'CSS', isDone: false},

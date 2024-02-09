@@ -11,16 +11,14 @@ let todolistId1: string
 let todolistId2: string
 let startState: Array<TodolistsType>
 
-
-
 beforeEach(() => {
     todolistId1 = v1()
     todolistId2 = v1()
-    startState= [
+    startState = [
         {id: todolistId1, title: 'What to learn', filter: 'all'},
         {id: todolistId2, title: 'What to buy', filter: 'all'}
     ]
-}) 
+})
 
 
 test('correct todolist should be removed', () => {
