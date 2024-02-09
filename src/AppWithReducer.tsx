@@ -53,7 +53,6 @@ export function AppWithReducer() {
 
     const addTask = (title: string, todolistID: string) => {
         dispatchToTasks(addTaskAC(title, todolistID))
-
     }
 
     const removeTask = (taskId: string, todolistID: string) => {
