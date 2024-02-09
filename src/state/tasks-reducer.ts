@@ -9,13 +9,13 @@ export type ActionsType = RemoveTaskActionType
     | AddTodolistActionType
     | RemoveTodolistActionType
 
-const initialState:TasksStateType = {}
+const initialState: TasksStateType = {}
 export type RemoveTaskActionType = ReturnType<typeof removeTaskAC>
 export type AddTaskActionType = ReturnType<typeof addTaskAC>
 export type ChangeTaskStatus = ReturnType<typeof changeTaskStatusAC>
 export type changeTaskTitleActionType = ReturnType<typeof changeTaskTitleAC>
 
-export const tasksReducer = (state= initialState, action: ActionsType) => {
+export const tasksReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case "REMOVE-TASK":
             return {
@@ -55,7 +55,7 @@ export const tasksReducer = (state= initialState, action: ActionsType) => {
             return copyState
 
         default:
-           return state
+            return state
     }
 }
 

@@ -29,7 +29,7 @@ let initialState: Array<TodolistsType> = []
 // меня вызовут и дадут мне стейт (почти всегда объект)
 // и инструкцию (action, тоже объект)
 // согласно прописанному type в этом action (инструкции) я поменяю state
-export const todolistsReducer = (state=initialState, action: ActionsType): Array<TodolistsType> => {
+export const todolistsReducer = (state = initialState, action: ActionsType): Array<TodolistsType> => {
     switch (action.type) {
         case 'REMOVE-TODOLIST': {
             return state.filter(el => el.id !== action.id)
