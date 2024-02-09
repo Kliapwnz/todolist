@@ -63,7 +63,9 @@ export function AppWithReducer() {
         dispatchToTodolists(ChangeTodolistFilterAC(todolistId, value))
     }
     const removeTodolist = (id: string) => {
-        dispatchToTodolists(RemoveTodolistAC(id))
+        let deleteTodo = RemoveTodolistAC(id)
+        dispatchToTodolists(deleteTodo)
+        dispatchToTasks(deleteTodo)
     }
     const addTodolist = (title: string) => {
         let newTodo = AddTodolistAC(title)
