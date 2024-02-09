@@ -100,8 +100,8 @@ export function AppWithReducer() {
                         return <Grid item>
                             <Paper style={{padding: '10px'}}>
                                 <Todolist title={el.title}
-                                          task={tasksForTodolist}
                                           removeTask={removeTask}
+                                          task={tasksForTodolist}
                                           changeFilter={changeFilter}
                                           addTask={addTask}
                                           changeTaskStatus={changeTaskStatus}
