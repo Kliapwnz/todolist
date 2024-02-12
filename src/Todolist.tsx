@@ -31,15 +31,15 @@ export const Todolist = memo((props: TodolistType) => {
         props.addTask(title, props.id)
     }, [props.addTask, props.id])
 
-    let allButtonHandler = () => {
+    let allButtonHandler = useCallback(() => {
         props.changeFilter("all", props.id)
-    }
-    let activeButtonHandler = () => {
+    },[props.changeFilter, props.id])
+    let activeButtonHandler = useCallback(() => {
         props.changeFilter("active", props.id)
-    }
-    let completedButtonHandler = () => {
+    },[props.changeFilter, props.id])
+    let completedButtonHandler = useCallback(() => {
         props.changeFilter("completed", props.id)
-    }
+    },[props.changeFilter, props.id])
     let updateTodolistHandler = (title: string) => {
         props.updateTodolist(props.id, title)
     }
