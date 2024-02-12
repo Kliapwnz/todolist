@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEventHandler, useState} from "react";
+import React, {ChangeEvent, KeyboardEventHandler, useCallback, useState} from "react";
 import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
@@ -27,9 +27,9 @@ export type TaskType = {
 
 export const Todolist = (props: TodolistType) => {
 
-    const addTask = (title: string) => {
+    const addTask = useCallback((title: string) => {
         props.addTask(title, props.id)
-    }
+    },[props])
 
     let allButtonHandler = () => {
         props.changeFilter("all", props.id)
