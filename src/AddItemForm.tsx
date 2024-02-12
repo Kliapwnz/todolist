@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, memo, useState} from 'react';
 import {Button, IconButton, TextField} from "@mui/material";
 import {AddBox} from "@mui/icons-material";
 
@@ -6,7 +6,7 @@ type AddItemFormPropsType = {
     addItem: (title: string) => void
 }
 
-export const AddItemForm = (props: AddItemFormPropsType) => {
+export const AddItemForm = memo((props: AddItemFormPropsType) => {
     let [title, setTitle] = useState("")
     let [error, setError] = useState<string | null>(null)
     let addTaskHandler = () => {
@@ -47,5 +47,5 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
 
         </div>
     );
-};
+});
 
