@@ -21,7 +21,7 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
         setTitle(e.currentTarget.value)
     }
     let onEnterHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        setError(null)
+        if(error) setError(null)
         if (e.key === "Enter") {
             addTaskHandler()
         }
