@@ -29,7 +29,7 @@ export const Todolist = (props: TodolistType) => {
 
     const addTask = useCallback((title: string) => {
         props.addTask(title, props.id)
-    },[props])
+    },[props.addTask, props.id])
 
     let allButtonHandler = () => {
         props.changeFilter("all", props.id)
