@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEventHandler, memo, useCallback, useState} from "react";
+import React, {ChangeEvent, memo, useCallback} from "react";
 import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
