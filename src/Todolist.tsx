@@ -26,6 +26,7 @@ export type TaskType = {
 
 
 export const Todolist = memo((props: TodolistType) => {
+   console.log("todo")
 
    const addTask = useCallback((title: string) => {
       props.addTask(title, props.id)
