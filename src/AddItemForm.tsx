@@ -36,7 +36,7 @@ export const AddItemForm = memo((props: AddItemFormPropsType) => {
             variant='outlined'
             value={title}
             onChange={onChangeHandler}
-            onKeyPress={onEnterHandler}
+            onKeyDown={onEnterHandler}
             error={!!error}
             label='Title'
             helperText={error}
